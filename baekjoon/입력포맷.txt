@@ -1,0 +1,10 @@
+vscode로 테스트할 때
+let input = require("fs").readFileSync("example.txt").toString().trim().split("\n");
+
+1. 한 줄에 공백으로 값이 들어올 때
+let input = require('fs').readFileSync('/dev/stdin').toString().trim().split(' '); 
+
+2. 한 줄에 하나씩 값이 들어올 때
+let input = require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
+
+__dirname
