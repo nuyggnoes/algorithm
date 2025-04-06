@@ -6,22 +6,26 @@ function solution(n, k) {
     let index = 0;
     while (index < queue.length) {
         const current = queue[index++];
-        if (current === k) {
-            console.log(dist);
-            return dist[current];
+        if (current === k) return dist[current];
+        const steps = [current - 1, current + 1, current * 2];
+        for (const step of steps) {
+            if (step >= 0 && step < 100001 && dist[step] === -1) {
+                dist[step] = dist[current] + 1;
+                queue.push(step);
+            }
         }
-        if (current - 1 >= 0 && dist[current - 1] === -1) {
-            dist[current - 1] = dist[current] + 1;
-            queue.push(current - 1);
-        }
-        if (current + 1 < 100001 && dist[current + 1] === -1) {
-            dist[current + 1] = dist[current] + 1;
-            queue.push(current + 1);
-        }
-        if (current * 2 < 100001 && dist[current * 2] === -1) {
-            dist[current * 2] = dist[current] + 1;
-            queue.push(current * 2);
-        }
+        // if (current - 1 >= 0 && dist[current - 1] === -1) {
+        //     dist[current - 1] = dist[current] + 1;
+        //     queue.push(current - 1);
+        // }
+        // if (current + 1 < 100001 && dist[current + 1] === -1) {
+        //     dist[current + 1] = dist[current] + 1;
+        //     queue.push(current + 1);
+        // }
+        // if (current * 2 < 100001 && dist[current * 2] === -1) {
+        //     dist[current * 2] = dist[current] + 1;
+        //     queue.push(current * 2);
+        // }
     }
 }
 
