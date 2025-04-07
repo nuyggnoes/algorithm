@@ -1,23 +1,22 @@
-function solution(n, m) {
+function solution(n, m, numbers) {
     const answer = [];
-    const visited = Array.from({ length: n }, () => false);
-    const arr = [];
-    const dfs = (depth) => {
-        if (depth === m) {
+    const visited = Array(n).fill(false);
+    const recursion = (index, arr = []) => {
+        if (index === m) {
             answer.push([...arr]);
             return;
         }
         for (let i = 0; i < n; i++) {
             if (!visited[i]) {
                 visited[i] = true;
-                arr.push(i + 1);
-                dfs(depth + 1);
-                visited[i] = false;
+                arr.push(numbers[i]);
+                recursion(index + 1, arr);
                 arr.pop();
+                visited[i] = false;
             }
         }
     };
-    dfs(0);
+    recursion(0);
     return answer;
 }
 
@@ -26,4 +25,9 @@ const [N, M] = input
     .shift()
     .split(" ")
     .map((e) => +e);
-console.log(solution(N, M));
+const NUMBER = input
+    .shift()
+    .split(" ")
+    .map(Number)
+    .sort((a, b) => a - b);
+console.log(solution(N, M, NUMBER));
