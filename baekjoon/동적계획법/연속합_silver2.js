@@ -9,7 +9,6 @@ function solution(n, number) {
 
 let input = require("fs").readFileSync("example.txt").toString().trim().split("\n");
 const N = Number(input.shift());
-console.log(input);
 const NUMBER = input
     .shift()
     .split(" ")
