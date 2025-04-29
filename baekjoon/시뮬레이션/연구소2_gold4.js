@@ -1,4 +1,3 @@
-// 97% 실패
 function solution(n, m, board) {
     let minTime = Number.MAX_SAFE_INTEGER;
     const dx = [-1, 0, 1, 0];

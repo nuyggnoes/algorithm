@@ -1,4 +1,4 @@
-function solution(n, l, r, city) {
+function solution(N, L, R, city) {
     const dx = [-1, 0, 1, 0];
     const dy = [0, 1, 0, -1];
     function findUnion(x, y, visited) {
@@ -9,23 +9,25 @@ function solution(n, l, r, city) {
             visited[cx][cy] = true;
             for (let i = 0; i < 4; i++) {
                 const [nx, ny] = [cx + dx[i], cy + dy[i]];
-                if (nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
+                if (nx < 0 || ny < 0 || nx >= N || ny >= N) continue;
                 if (visited[nx][ny]) continue;
+
                 const diff = Math.abs(city[nx][ny] - city[cx][cy]);
-                if (diff > r || diff < l) continue;
-                visited[nx][ny] = true;
-                queue.push([nx, ny]);
-                union.push([nx, ny]);
+                if (L <= diff && diff <= R) {
+                    visited[nx][ny] = true;
+                    union.push([nx, ny]);
+                    queue.push([nx, ny]);
+                }
             }
         }
         return union;
     }
-    let days = 0;
+    let day = 0;
     while (true) {
-        const visited = Array.from({ length: n }, () => Array(n).fill(false));
+        const visited = Array.from({ length: N }, () => Array(N).fill(false));
         let moved = false;
-        for (let i = 0; i < n; i++) {
-            for (let j = 0; j < n; j++) {
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
                 if (!visited[i][j]) {
                     const union = findUnion(i, j, visited);
                     if (union.length > 1) {
@@ -43,9 +45,9 @@ function solution(n, l, r, city) {
             }
         }
         if (!moved) break;
-        days++;
+        day++;
     }
-    return days;
+    return day;
 }
 
 const input = require("fs")
