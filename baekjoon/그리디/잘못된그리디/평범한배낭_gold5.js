@@ -8,7 +8,11 @@ function solution(n, k, wv) {
     }
     return dp[k];
 }
-const input = require("fs").readFileSync("example.txt").toString().trim().split("\n");
+const input = require("fs")
+    .readFileSync("example.txt")
+    .toString()
+    .trim()
+    .split("\n");
 const [N, K] = input.shift().split(" ").map(Number);
 const WV = input.map((e) => e.split(" ").map(Number));
 console.log(solution(N, K, WV));
